@@ -25,6 +25,7 @@
                     </button>
                 </form>
                 <a href="{{route('product.edit', $product)}}" class="btn btn-success">Редактировать</a>
+                <a href="{{route('product.show', $product)}}" class="btn btn-primary">Просмотр</a>
             </td>
         </tr>
         @endforeach
@@ -36,4 +37,3 @@
         @endif
     </tbody>
 </table>
-{{ $products->render() }}

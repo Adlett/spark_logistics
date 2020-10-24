@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Services\ProductSaveService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
     /**
-     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
         $products = Product::paginate(10);
         return view('products.index', ['products' => $products]);
@@ -56,7 +54,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.view', ['product' => $product]);
     }
 
     /**
@@ -75,7 +73,7 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Partner $partner
+     * @param Product $product
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product)
@@ -92,13 +90,14 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Partner $partner
+     * @param Product $product
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy(Partner $partner)
+    public function destroy(Product $product)
     {
-        $partner->delete();
-        return redirect('/admin/partners');
+        ProductCategory::where('product_id', $product->id)->delete();
+        $product->delete();
+        return redirect(route('product.index'));
     }
 }

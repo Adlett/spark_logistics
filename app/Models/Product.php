@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
  * @property int $eId
  * @property string $created_at
  * @property string $updated_at
+ * @property Category[] $categories
  */
 class Product extends Model
 {
@@ -85,5 +86,10 @@ class Product extends Model
     public function getCategoryIds()
     {
         return ProductCategory::where('product_id', $this->id)->pluck('category_id')->toArray();
+    }
+
+    public function categories()
+    {
+        return $this->hasManyThrough(Category::class, ProductCategory::class,'product_id', 'id', 'id', 'product_id');
     }
 }

@@ -23,3 +23,4 @@ Route::post('/products', [\App\Http\Controllers\ProductController::class, 'store
 Route::delete('/products/{product}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
 Route::get('/products/edit/{product}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
 Route::patch('/products/update/{product}', [\App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+Route::get('/product/{product}', [\App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
