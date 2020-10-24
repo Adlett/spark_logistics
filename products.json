@@ -1,0 +1,5 @@
+[
+    {"eId": 1, "title": "Product 1", "price": 101.01, "categoriesEId": [11,25]},
+    {"eId": 2, "title": "Product 2", "price": 199.01, "categoriesEId": [20,36]},
+    {"eId": 3, "title": "Product 33333333", "price": 999.01, "categoriesEId": [3,1]}
+]
